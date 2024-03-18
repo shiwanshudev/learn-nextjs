@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-export default function SearchImage() {
+export default function SearchImage({ onSubmit }) {
   const [searchTerm, setSearchTerm] = useState("");
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log(searchTerm);
+    onSubmit(searchTerm);
   };
+
   return (
     <form onSubmit={handleSubmit}>
       <input

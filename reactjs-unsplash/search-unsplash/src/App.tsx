@@ -2,25 +2,19 @@ import SearchImage from "./components/SearchImage";
 import "./App.css";
 import { searchImages } from "./api";
 import { useState } from "react";
-type Image = {
-  slug: string;
-  urls: {
-    regular: string;
-  };
-};
+import ImageList from "./components/ImageList";
 
 function App() {
   const [images, setImages] = useState([]);
   const handleSubmit = async (term: string) => {
     const images = await searchImages(term);
     setImages(images.results);
+    console.log(images.results);
   };
   return (
     <>
       <SearchImage onSubmit={handleSubmit} />
-      {images.map((image: Image) => (
-        <img alt={image.slug} src={image.urls.regular} key={image.slug} />
-      ))}
+      <ImageList images={images} />
     </>
   );
 }

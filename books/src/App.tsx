@@ -1,8 +1,10 @@
 import { useState } from "react";
 import BookCreate from "./components/BookCreate";
+import BookList from "./components/BookList";
 
 interface Book {
   title: string;
+  id: number;
 }
 
 function App() {
@@ -15,7 +17,8 @@ function App() {
     setBooks(updatedBooks);
   };
   return (
-    <div>
+    <div className="app">
+      <BookList books={books} />
       <BookCreate onCreate={createBook} />
     </div>
   );

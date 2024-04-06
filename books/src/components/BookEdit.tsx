@@ -5,17 +5,17 @@ interface Book {
 }
 export default function BookEdit({
   book,
-  onEdit,
+  onSubmit,
 }: {
   book: Book;
-  onEdit: (id: number, title: string) => void;
+  onSubmit: (id: number, title: string) => void;
 }) {
   const [title, setTitle] = useState(book.title);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setTitle(e.target.value);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onEdit(book.id, title);
+    onSubmit(book.id, title);
   };
   return (
     <form className="book-edit" onSubmit={handleSubmit}>

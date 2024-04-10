@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BookCreate from "./components/BookCreate";
 import BookList from "./components/BookList";
+import axios from "axios";
 
 interface Book {
   title: string;
@@ -9,11 +10,11 @@ interface Book {
 
 function App() {
   const [books, setBooks] = useState<Book[]>([]);
-  const createBook = (title: string) => {
-    const updatedBooks = [
-      ...books,
-      { id: Math.round(Math.random() * 9999), title },
-    ];
+  const createBook = async (title: string) => {
+    const response = await axios.post("http://localhost:3001/books", {
+      title,
+    });
+    const updatedBooks = [...books, response.data];
     setBooks(updatedBooks);
   };
 
@@ -31,6 +32,14 @@ function App() {
     const updatedBooks = books.filter((book) => book.id !== id);
     setBooks(updatedBooks);
   };
+  const fetchBooks = async () => {
+    const response = await axios.get("http://localhost:3001/books");
+    setBooks(response.data);
+  };
+
+  useEffect(() => {
+    fetchBooks();
+  }, []);
   return (
     <div className="app">
       <h1>Reading List</h1>

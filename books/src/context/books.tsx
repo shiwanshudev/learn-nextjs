@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useCallback, useState } from "react";
 import axios from "axios";
 interface BooksContextType {
   books: Book[];
@@ -43,10 +43,10 @@ function Provider({ children }: { children: React.ReactNode }) {
     const updatedBooks = books.filter((book) => book.id !== id);
     setBooks(updatedBooks);
   };
-  const fetchBooks = async () => {
+  const fetchBooks = useCallback(async () => {
     const response = await axios.get("http://localhost:3001/books");
     setBooks(response.data);
-  };
+  }, []);
   const contextValue: BooksContextType = {
     books,
     createBook,

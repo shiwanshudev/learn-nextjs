@@ -1,3 +1,4 @@
+import Button from "./Button";
 export default function App() {
-  return <div> hello world</div>;
+  return <Button primary>Hey</Button>;
 }

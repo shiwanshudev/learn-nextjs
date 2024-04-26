@@ -29,11 +29,11 @@ export default function Button({
   }
   const { primary, secondary, warning, success, danger } = props;
   const classes = clsx("px-3 py-2 cursor-pointer", {
-    "bg-blue-700  text-white": primary,
-    "border border-zinc-300": secondary,
-    "bg-yellow-500 text-white": warning,
-    "bg-green-500 text-white": success,
-    "bg-red-500 text-white": danger,
+    "bg-blue-700  text-white": primary && !outline,
+    "border border-zinc-300": secondary && !outline,
+    "bg-yellow-500 text-white": warning && !outline,
+    "bg-green-500 text-white": success && !outline,
+    "bg-red-500 text-white": danger && !outline,
     "rounded-lg": rounded,
     "text-blue-700 border border-blue-700 bg-transparent": outline && primary,
     "text-blue-700 border border-zinc-300 bg-transparent": outline && secondary,

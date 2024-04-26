@@ -10,6 +10,7 @@ interface ButtonProps {
   rounded?: boolean | undefined;
   outline?: boolean | undefined;
   className?: string | undefined;
+  onClick?: (e: React.SyntheticEvent) => void;
 }
 
 export default function Button({
@@ -17,6 +18,7 @@ export default function Button({
   rounded,
   outline,
   className,
+  onClick,
   ...props
 }: ButtonProps) {
   const variants = Object.keys(props);
@@ -40,5 +42,9 @@ export default function Button({
     "text-blue-700 border border-red-500 bg-transparent": outline && danger,
   });
 
-  return <button className={`${classes} ${className}`}>{children}</button>;
+  return (
+    <button className={`${classes} ${className}`} onClick={onClick}>
+      {children}
+    </button>
+  );
 }

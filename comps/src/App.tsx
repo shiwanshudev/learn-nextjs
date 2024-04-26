@@ -1,8 +1,9 @@
 import Button from "./Button";
 export default function App() {
+  const handleClick = () => console.log("hey");
   return (
     <div className=" flex items-center justify-center">
-      <Button primary rounded outline>
+      <Button primary rounded outline onClick={handleClick}>
         Primary
       </Button>
       <Button secondary rounded>

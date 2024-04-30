@@ -57,11 +57,13 @@ export default function Accordion() {
   const [expandedIndex, setExpandedIndex] = useState(-1);
 
   const handleClick = (index: number) => {
-    if (expandedIndex === index) {
-      setExpandedIndex(-1);
-    } else {
-      setExpandedIndex(index);
-    }
+    setExpandedIndex((current) => {
+      if (current === index) {
+        return -1;
+      } else {
+        return index;
+      }
+    });
   };
 
   return (

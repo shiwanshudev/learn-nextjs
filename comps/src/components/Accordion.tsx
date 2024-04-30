@@ -54,20 +54,35 @@ const data = [
 ];
 
 export default function Accordion() {
-  const [expandedIndex, setExpandedIndex] = useState(0);
+  const [expandedIndex, setExpandedIndex] = useState(-1);
 
   const handleClick = (index: number) => {
-    setExpandedIndex(index);
-    console.log(expandedIndex);
+    if (expandedIndex === index) {
+      setExpandedIndex(-1);
+    } else {
+      setExpandedIndex(index);
+    }
   };
 
   return (
     <div>
       {data.map((fact, index) => {
         return (
-          <div className="" key={fact.id} onClick={() => handleClick(index)}>
-            <div>{fact.label}</div>
-            {expandedIndex === index && <div>{fact.content}</div>}
+          <div
+            key={fact.id}
+            onClick={() => handleClick(index)}
+            className="cursor-pointer"
+          >
+            <div className="p-3 flex items-center justify-between w-full border-b bg-gray-100">
+              <div>{fact.label}</div>{" "}
+              <div className="text-2xl">
+                {" "}
+                {expandedIndex === index ? "⌄" : "›"}
+              </div>
+            </div>
+            {expandedIndex === index && (
+              <div className="border-b p-3">{fact.content}</div>
+            )}
           </div>
         );
       })}

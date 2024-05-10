@@ -1,4 +1,10 @@
 import Dropdown from "./components/Dropdown";
+import { useState } from "react";
+
+interface Option {
+  value: string;
+  label: string;
+}
 const asianCountries = [
   { label: "India", value: "India" },
   { label: "China", value: "China" },
@@ -12,5 +18,16 @@ const asianCountries = [
   { label: "Singapore", value: "Singapore" },
 ];
 export default function App() {
-  return <Dropdown options={asianCountries} />;
+  const [selected, setSelected] = useState<null | Option>(null);
+
+  const handleSelected = (option: Option | null) => {
+    setSelected(option);
+  };
+  return (
+    <Dropdown
+      options={asianCountries}
+      value={selected}
+      onChange={handleSelected}
+    />
+  );
 }

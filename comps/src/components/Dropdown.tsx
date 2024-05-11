@@ -19,14 +19,21 @@ export default function Dropdown({ options, value, onChange }: PropsType) {
   };
 
   return (
-    <div className="container mx-auto h-screen flex items-center justify-center">
-      <div className="flex flex-col items-center justify-center bg-zinc-50 border border-solid border-zinc-200 rounded-md cursor-pointer px-5">
-        <div onClick={() => setIsOpen((currentIsOpen) => !currentIsOpen)}>
-          {value?.label || null}
+    <div>
+      <div className="w-48 shadow border rounded flex flex-col justify-center items-center">
+        <div
+          onClick={() => setIsOpen((currentIsOpen) => !currentIsOpen)}
+          className="w-full text-center p-1 hover:bg-sky-100 duration-300 cursor-pointer shadow"
+        >
+          {value?.label || "Select..."}
         </div>
         {isOpen &&
           options.map((option) => (
-            <div onClick={() => handleOptionClick(option)} key={option.value}>
+            <div
+              onClick={() => handleOptionClick(option)}
+              key={option.value}
+              className="w-full text-center p-1 hover:bg-sky-100 duration-100 cursor-pointer"
+            >
               {option.label}
             </div>
           ))}

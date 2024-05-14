@@ -20,6 +20,9 @@ export default function Dropdown({ options, value, onChange }: PropsType) {
   };
   useEffect(() => {
     const handler = (event: MouseEvent) => {
+      if (!divEl.current) {
+        return;
+      }
       if (!divEl?.current?.contains(event.target as Node)) {
         setIsOpen(false);
       }

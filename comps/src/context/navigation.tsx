@@ -16,9 +16,15 @@ function NavigationProvider({ children }: { children: React.ReactNode }) {
       window.removeEventListener("popstate", handler);
     };
   }, []);
+  const navigate = (to) => {
+    window.history.pushState({}, "", to);
+    setCurrentPath(to);
+  };
   return (
-    <NavigationContext.Provider value={{}}>
+    <NavigationContext.Provider value={{ navigate, currentPath }}>
       {currentPath}
+      <button onClick={() => navigate("/accordion")}>Accordion</button>
+      <button onClick={() => navigate("/dropdown")}>Dropdown</button>
       {children}
     </NavigationContext.Provider>
   );

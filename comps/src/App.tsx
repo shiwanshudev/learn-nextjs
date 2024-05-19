@@ -1,33 +1,23 @@
-import Dropdown from "./components/Dropdown";
-import { useState } from "react";
+import Link from "./components/Link";
+import Route from "./components/Route";
+import AccordionPage from "./pages/AccordionPage";
+import DropdownPage from "./pages/DropdownPage";
 
-interface Option {
-  value: string;
-  label: string;
-}
-const asianCountries = [
-  { label: "India", value: "India" },
-  { label: "China", value: "China" },
-  { label: "Japan", value: "Japan" },
-  { label: "South Korea", value: "South Korea" },
-  { label: "Indonesia", value: "Indonesia" },
-  { label: "Vietnam", value: "Vietnam" },
-  { label: "Thailand", value: "Thailand" },
-  { label: "Malaysia", value: "Malaysia" },
-  { label: "Philippines", value: "Philippines" },
-  { label: "Singapore", value: "Singapore" },
-];
 export default function App() {
-  const [selected, setSelected] = useState<null | Option>(null);
-
-  const handleSelected = (option: Option | null) => {
-    setSelected(option);
-  };
   return (
-    <Dropdown
-      options={asianCountries}
-      value={selected}
-      onChange={handleSelected}
-    />
+    <>
+      <div>
+        <Link to="/accordion">Go to Accordion</Link>
+        <Link to="/dropdown">Go to Dropdown</Link>
+      </div>
+      <div>
+        <Route path="/accordion">
+          <AccordionPage />
+        </Route>
+        <Route path="/dropdown">
+          <DropdownPage />
+        </Route>
+      </div>
+    </>
   );
 }

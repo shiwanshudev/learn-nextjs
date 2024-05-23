@@ -12,7 +12,7 @@ export default function Link({ to, children }: { children: any; to: string }) {
   };
 
   return (
-    <a href={to} onClick={handleClick}>
+    <a href={to} onClick={handleClick} className="p-3 text-lg text-blue-500">
       {children}
     </a>
   );

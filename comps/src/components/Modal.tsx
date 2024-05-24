@@ -10,6 +10,6 @@ export default function Modal({ onClose }: { onClose: () => void }) {
         Message
       </div>
     </div>,
-    document.querySelector(".modal")
+    document.querySelector(".modal")!
   );
 }

@@ -1,5 +1,5 @@
 import Button from "../components/Button";
-export default function App() {
+export default function ButtonPage() {
   const handleClick = () => console.log("hey");
   return (
     <div className=" flex items-center justify-center">

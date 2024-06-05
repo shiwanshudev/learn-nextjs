@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "../components/Button";
 
-function useSomething(initialCount: number) {
+function useCounter(initialCount: number) {
   const [count, setCount] = useState(initialCount);
   useEffect(() => {
     console.log("Count updated: " + count);
@@ -9,7 +9,7 @@ function useSomething(initialCount: number) {
   const handleClick = () =>
     setCount((currentCount: number) => currentCount + 1);
 
-  return { count, handleClick };
+  return { count, increment: handleClick };
 }
 
 export default function CounterPage({
@@ -17,12 +17,12 @@ export default function CounterPage({
 }: {
   initialCount: number;
 }) {
-  const { count, handleClick } = useSomething(initialCount);
+  const { count, increment } = useCounter(initialCount);
 
   return (
     <div>
       <h2>Count is {count}</h2>
-      <Button primary onClick={handleClick}>
+      <Button primary onClick={increment}>
         Increment
       </Button>
     </div>
